@@ -1,0 +1,416 @@
+# Unit 1.1
+
+# Beginner
+
+my_info = {
+    "name": "Marlone",
+    "age": 19,
+    "major": "Computer Science"
+}
+
+print(my_info)
+
+
+# Intermediate
+
+menu = {
+    "burger": 8.99,
+    "pizza": 12.99,
+    "fries": 3.49,
+    "soda": 1.99
+}
+
+course_credits = {
+    "CS1350": 3,
+    "MATH201": 3,
+    "ENGL101": 3,
+    "HIST101": 3
+}
+
+print(menu)
+print(course_credits)
+
+
+# Advanced
+
+weekly_temps = dict(
+    Monday=72,
+    Tuesday=75,
+    Wednesday=68,
+    Thursday=70,
+    Friday=73,
+    Saturday=78,
+    Sunday=76
+)
+
+print(weekly_temps)
+
+
+# Unit 1.2
+
+# Beginner
+
+pet = {
+    "name": "Buddy",
+    "type": "dog",
+    "age": 3
+}
+
+print(pet["name"])
+print(pet["age"])
+
+
+# Intermediate
+
+print(pet.get("color", "unknown"))
+
+grades = {
+    "CS1350": 85,
+    "MATH201": 72,
+    "ENGL101": 90
+}
+
+grade = grades.get("CS1350")
+
+if grade >= 70:
+    print("Student passed")
+else:
+    print("Student did not pass")
+
+
+# Advanced
+
+products = {
+    "laptop": 999.99,
+    "mouse": 29.99,
+    "keyboard": 79.99
+}
+
+product = "laptop"
+
+if product in products:
+    print(products[product])
+else:
+    print("Product not available")
+
+product = "monitor"
+
+if product in products:
+    print(products[product])
+else:
+    print("Product not available")
+
+
+# Unit 1.3
+
+# Beginner
+
+inventory = {}
+
+inventory["apples"] = 10
+inventory["bananas"] = 15
+inventory["oranges"] = 8
+
+print(inventory)
+
+
+# Intermediate
+
+scores = {
+    "Team A": 45,
+    "Team B": 38
+}
+
+scores["Team B"] = 52
+scores["Team C"] = 41
+
+print(scores)
+
+removed = scores.pop("Team A")
+
+print(removed)
+print(scores)
+
+
+# Advanced
+
+cart = {}
+
+cart["shirt"] = 25
+cart["shoes"] = 60
+cart["hat"] = 20
+
+cart["shirt"] = 30
+
+removed = cart.pop("hat")
+
+print("Removed:", removed)
+print("Cart:", cart)
+
+total = sum(cart.values())
+
+print("Total:", total)
+
+
+# Unit 2.1
+
+# Beginner
+
+print('"student_name" - valid')
+print("[1, 2, 3] - invalid')
+print("100 - valid")
+print('("x", "y") - valid')
+print('{"a": 1} - invalid')
+print("frozenset({1,2}) - valid")
+
+
+# Intermediate
+
+locations = {
+    (40.7, -74.0): "New York",
+    (34.0, -118.2): "Los Angeles"
+}
+
+print(locations)
+
+data = {
+    "a": 1,
+    "b": 2,
+    "a": 3,
+    "b": 4
+}
+
+print(data)
+print(len(data))
+
+name = "Marlone"
+
+print(hash(name))
+print(hash(100))
+
+
+# Advanced
+
+game_scores = {
+    ("Marlone", "Basketball"): 95,
+    ("John", "Basketball"): 88,
+    ("Mike", "Football"): 91
+}
+
+print(game_scores[("Marlone", "Basketball")])
+
+import time
+
+big_list = list(range(100000))
+big_dict = {i: i for i in range(100000)}
+
+start = time.time()
+
+x = 99999 in big_list
+
+list_time = time.time() - start
+
+start = time.time()
+
+x = 99999 in big_dict
+
+dict_time = time.time() - start
+
+print("List:", list_time)
+print("Dictionary:", dict_time)
+
+
+# Unit 2.2
+
+temps = {
+    "Monday": 72,
+    "Tuesday": 75,
+    "Wednesday": 68
+}
+
+
+# Beginner
+
+for day in temps.keys():
+    print(day)
+
+for temp in temps.values():
+    print(temp)
+
+print(len(temps))
+
+
+# Intermediate
+
+print(max(temps.values()))
+print(min(temps.values()))
+
+if "Friday" in temps:
+    print("Friday is in the dictionary")
+else:
+    print("Friday is not in the dictionary")
+
+temps.setdefault("Thursday", 70)
+
+print(temps)
+
+keys = temps.keys()
+
+temps["Friday"] = 73
+
+print(keys)
+
+
+# Advanced
+
+prices = {
+    "laptop": 999,
+    "phone": 699,
+    "tablet": 449,
+    "watch": 299
+}
+
+total = sum(prices.values())
+
+average = total / len(prices)
+
+print("Total:", total)
+print("Average:", average)
+
+most = max(prices.items(), key=lambda x: x[1])
+least = min(prices.items(), key=lambda x: x[1])
+
+print("Most expensive:", most)
+print("Least expensive:", least)
+
+import sys
+
+keys = prices.keys()
+keys_list = list(prices.keys())
+
+print(sys.getsizeof(keys))
+print(sys.getsizeof(keys_list))
+
+prices.update({
+    "camera": 599,
+    "headphones": 199,
+    "speaker": 149
+})
+
+print(prices)
+
+
+# Unit 2.3
+
+# Beginner
+
+colors = {
+    "apple": "red",
+    "banana": "yellow",
+    "grape": "purple"
+}
+
+for fruit, color in colors.items():
+    print("The", fruit, "is", color)
+
+print(list(colors.items()))
+
+
+# Intermediate
+
+prices = {
+    "coffee": 4.50,
+    "tea": 3.00,
+    "juice": 5.25
+}
+
+for item, price in prices.items():
+    tax = price * .10
+    total = price + tax
+    print(item, "$" + format(price, ".2f"),
+          "+ tax =", "$" + format(total, ".2f"))
+
+count = 0
+
+for item, price in prices.items():
+    if price > 4:
+        count = count + 1
+
+print("Items over $4:", count)
+
+x = 10
+y = 20
+
+x, y = y, x
+
+print(x)
+print(y)
+
+numbers = [1, 2, 3, 4, 5]
+
+first, *middle, last = numbers
+
+print(first)
+print(middle)
+print(last)
+
+
+# Advanced
+
+scores = {
+    "Alice": 88,
+    "Bob": 65,
+    "Carol": 92,
+    "Dave": 71,
+    "Eve": 58
+}
+
+best = max(scores.items(), key=lambda x: x[1])
+
+print("Highest:", best)
+
+passed = {}
+failed = {}
+
+for name, score in scores.items():
+    if score >= 70:
+        passed[name] = score
+    else:
+        failed[name] = score
+
+print("Passed:", passed)
+print("Failed:", failed)
+
+average = sum(scores.values()) / len(scores)
+
+print("Average:", average)
+
+deviations = {}
+
+for name, score in scores.items():
+    deviations[name] = score - average
+
+print("Deviations:", deviations)
+
+
+import time
+
+big_dict = {i: i * 2 for i in range(50000)}
+
+start = time.time()
+
+for k, v in big_dict.items():
+    x = k + v
+
+items_time = time.time() - start
+
+start = time.time()
+
+for k in big_dict.keys():
+    v = big_dict[k]
+    x = k + v
+
+keys_time = time.time() - start
+
+print("items time:", items_time)
+print("keys time:", keys_time)
