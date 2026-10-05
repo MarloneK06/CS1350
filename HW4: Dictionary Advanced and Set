@@ -1,0 +1,452 @@
+# =====================================================
+# UNIT 3.1 - BEGINNER
+# =====================================================
+
+inventory = {"apples": 50, "bananas": 30, "oranges": 25}
+
+# 1. Print each product name
+for product in inventory:
+    print(product)
+
+# 2. Total items
+print("Total:", sum(inventory.values()))
+
+# 3. Product with quantity
+for product, qty in inventory.items():
+    print(product, qty)
+
+
+# =====================================================
+# UNIT 3.1 - INTERMEDIATE
+# =====================================================
+
+prices = {"laptop": 999, "phone": 699, "tablet": 449, "watch": 299}
+
+# 1. Sorted alphabetically
+for item in sorted(prices):
+    print(item, prices[item])
+
+# 2. Sorted by price, cheapest first
+for item in sorted(prices, key=prices.get):
+    print(item, prices[item])
+
+# 3. Most expensive item
+top_item = ""
+top_price = 0
+for item, price in prices.items():
+    if price > top_price:
+        top_item = item
+        top_price = price
+print("Most expensive:", top_item, top_price)
+
+
+# =====================================================
+# UNIT 3.1 - ADVANCED
+# =====================================================
+
+temps = {"Mon": 72, "Tue": 68, "Wed": 75, "Thu": 80, "Fri": 65}
+
+# 1. Average temperature
+average = sum(temps.values()) / len(temps)
+print("Average:", average)
+
+# 2. Hottest and coldest in one loop
+hottest_day = "Mon"
+coldest_day = "Mon"
+for day, t in temps.items():
+    if t > temps[hottest_day]:
+        hottest_day = day
+    if t < temps[coldest_day]:
+        coldest_day = day
+print("Hottest:", hottest_day, temps[hottest_day])
+print("Coldest:", coldest_day, temps[coldest_day])
+
+# 3. Days above average
+count = 0
+for t in temps.values():
+    if t > average:
+        count += 1
+print("Days above average:", count)
+
+
+# =====================================================
+# UNIT 3.2 - BEGINNER
+# =====================================================
+
+products = {
+    "laptop": {"price": 999, "stock": 15},
+    "phone": {"price": 699, "stock": 50}
+}
+
+# 1. Laptop's price
+print(products["laptop"]["price"])
+
+# 2. Each product with its stock
+for name, info in products.items():
+    print(name, info["stock"])
+
+
+# =====================================================
+# UNIT 3.2 - INTERMEDIATE
+# =====================================================
+
+
+# 1. Make a dictionary from two lists with zip()
+countries = ["USA", "Canada", "Mexico"]
+capitals = ["Washington", "Ottawa", "Mexico City"]
+country_capitals = {}
+for country, capital in zip(countries, capitals):
+    country_capitals[country] = capital
+print(country_capitals)
+
+# 2. Add a new product
+products["tablet"] = {"price": 449, "stock": 30}
+print(products)
+
+# 3. Safely remove products with stock < 20
+for name, info in list(products.items()):   # list() makes a copy
+    if info["stock"] < 20:
+        del products[name]
+print(products)
+
+
+# =====================================================
+# UNIT 3.2 - ADVANCED
+# =====================================================
+
+company = {
+    "Engineering": {"Alice": 95000, "Bob": 85000},
+    "Marketing": {"Carol": 75000, "Dave": 70000}
+}
+
+# 1. All employees with salaries
+for dept, employees in company.items():
+    for name, salary in employees.items():
+        print(name, dept, salary)
+
+# 2. Average salary per department
+for dept, employees in company.items():
+    avg = sum(employees.values()) / len(employees)
+    print(dept, avg)
+
+# 3. Highest-paid employee
+best_name = ""
+best_salary = 0
+for dept, employees in company.items():
+    for name, salary in employees.items():
+        if salary > best_salary:
+            best_name = name
+            best_salary = salary
+print("Highest paid:", best_name, best_salary)
+
+
+# =====================================================
+# UNIT 3.3 - BEGINNER
+# =====================================================
+
+
+# 1. Numbers 1-5 mapped to their cubes
+cubes = {x: x**3 for x in range(1, 6)}
+print(cubes)
+
+# 2. Fahrenheit to Celsius
+temps_f = {"Mon": 72, "Tue": 68, "Wed": 75}
+temps_c = {day: (f - 32) * 5 / 9 for day, f in temps_f.items()}
+print(temps_c)
+
+
+# =====================================================
+# UNIT 3.3 - INTERMEDIATE
+# =====================================================
+
+scores = {"Alice": 88, "Bob": 65, "Carol": 92, "Dave": 71, "Eve": 58}
+
+# 1. Passing scores (70 or higher)
+passing = {name: s for name, s in scores.items() if s >= 70}
+print(passing)
+
+# 2. Letter grades
+def to_letter(s):
+    if s >= 90:
+        return "A"
+    if s >= 80:
+        return "B"
+    if s >= 70:
+        return "C"
+    return "F"
+
+letter_grades = {name: to_letter(s) for name, s in scores.items()}
+print(letter_grades)
+
+# 3. Invert student_ids
+student_ids = {"Alice": 101, "Bob": 102}
+by_id = {v: k for k, v in student_ids.items()}
+print(by_id)
+
+
+# =====================================================
+# UNIT 3.3 - ADVANCED
+# =====================================================
+
+sales = [
+    ("North", "Alice", 5000), ("South", "Bob", 4500),
+    ("North", "Carol", 6000), ("South", "Alice", 3500)
+]
+
+# 1. Total sales by region
+by_region = {}
+for region, person, amount in sales:
+    by_region[region] = by_region.get(region, 0) + amount
+print(by_region)
+
+# 2. Total sales by salesperson
+by_person = {}
+for region, person, amount in sales:
+    by_person[person] = by_person.get(person, 0) + amount
+print(by_person)
+
+# 3. Nested dict: {region: {person: total}}
+nested = {}
+for region, person, amount in sales:
+    if region not in nested:
+        nested[region] = {}
+    nested[region][person] = nested[region].get(person, 0) + amount
+print(nested)
+
+# CS1350 - Lecture 4: Set Practice Exercise Solutions
+# Units 1, 2, 3
+# Note: the print order of a set can vary. That is normal.
+
+import time
+
+
+# =====================================================
+# UNIT 1 - BEGINNER
+# =====================================================
+
+
+# 1. Set of vowels
+vowels = {"a", "e", "i", "o", "u"}
+print(vowels)
+
+# 2. Set from a list with duplicates
+nums = set([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
+print(nums)
+print("Number of elements:", len(nums))    # 4
+
+# 3. What's wrong with: empty = {}
+# Answer: {} makes an empty DICTIONARY, not a set.
+# Use set() to make an empty set.
+empty = set()
+print(type(empty))
+
+
+# =====================================================
+# UNIT 1 - INTERMEDIATE
+# =====================================================
+
+
+# 1. Unique characters in "mississippi"
+text = "mississippi"
+letters = set(text)
+print(letters)
+print("Unique letters:", len(letters))     # 4 (m, i, s, p)
+
+# 2. Remove duplicates from a list
+emails = ["a@b.com", "c@d.com", "a@b.com", "e@f.com", "c@d.com"]
+unique_emails = list(set(emails))
+print(unique_emails)
+
+# 3. Why does s = {[1, 2], [3, 4]} fail?
+# Answer: Set elements must be hashable. Lists are mutable,
+# so they are not hashable. Use tuples instead:
+s = {(1, 2), (3, 4)}
+print(s)
+
+
+# =====================================================
+# UNIT 1 - ADVANCED
+# =====================================================
+
+
+# 1. Compare membership time: set vs list
+big_set = set(range(1000000))
+big_list = list(range(1000000))
+
+start = time.perf_counter()
+999999 in big_set
+set_time = time.perf_counter() - start
+
+start = time.perf_counter()
+999999 in big_list
+list_time = time.perf_counter() - start
+
+print("Set time: ", set_time)
+print("List time:", list_time)
+
+# 2. Frozenset as a dictionary key
+fs = frozenset({"a", "b"})
+d = {fs: "value"}
+print(d)
+
+# 3. Unique nodes from a list of edges
+edges = [(1, 2), (2, 3), (1, 3), (3, 4)]
+nodes = set()
+for a, b in edges:
+    nodes.add(a)
+    nodes.add(b)
+print(nodes)                               # {1, 2, 3, 4}
+
+
+# =====================================================
+# UNIT 2 - BEGINNER
+# =====================================================
+
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+# 1. Union
+print(a | b)         # {1, 2, 3, 4, 5, 6}
+
+# 2. Intersection
+print(a & b)         # {3, 4}
+
+# 3. Only in a
+print(a - b)         # {1, 2}
+
+
+# =====================================================
+# UNIT 2 - INTERMEDIATE
+# =====================================================
+
+morning_shift = {"Alice", "Bob", "Carol"}
+evening_shift = {"Carol", "Dave", "Eve"}
+weekend_shift = {"Alice", "Eve", "Frank"}
+
+# 1. Work ALL shifts
+all_shifts = morning_shift & evening_shift & weekend_shift
+print(all_shifts)    # set() - nobody works all three
+
+# 2. Work at least one shift
+any_shift = morning_shift | evening_shift | weekend_shift
+print(any_shift)
+
+# 3. ONLY morning
+only_morning = morning_shift - evening_shift - weekend_shift
+print(only_morning)  # {'Bob'}
+
+# 4. Exactly one shift
+# Step 1: find people who work two (or more) shifts
+two_or_more = (morning_shift & evening_shift) | (morning_shift & weekend_shift) | (evening_shift & weekend_shift)
+# Step 2: take them out of the "any shift" set
+exactly_one = any_shift - two_or_more
+print(exactly_one)   # {'Bob', 'Dave', 'Frank'}
+
+
+# =====================================================
+# UNIT 2 - ADVANCED
+# =====================================================
+
+prereqs_met = {"Alice", "Bob", "Carol", "Dave"}
+has_space = {"Bob", "Carol", "Eve", "Frank"}
+paid_tuition = {"Alice", "Carol", "Eve"}
+
+# 1. Eligible (all three criteria)
+eligible = prereqs_met & has_space & paid_tuition
+print(eligible)      # {'Carol'}
+
+# 2. Met prereqs but have not paid tuition
+unpaid = prereqs_met - paid_tuition
+print(unpaid)        # {'Bob', 'Dave'}
+
+# 3. Missing prereqs OR tuition (missing at least one)
+# Everyone minus the people who have both
+everyone = prereqs_met | has_space | paid_tuition
+missing_one = everyone - (prereqs_met & paid_tuition)
+print(missing_one)   # {'Bob', 'Dave', 'Eve', 'Frank'}
+
+
+# =====================================================
+# UNIT 3 - BEGINNER
+# =====================================================
+
+
+# 1. Create {1, 2, 3}, add 4, remove 1
+s = {1, 2, 3}
+s.add(4)
+s.remove(1)
+print(s)             # {2, 3, 4}
+
+# 2. Even numbers from 0 to 20
+evens = {x for x in range(0, 21) if x % 2 == 0}
+print(evens)
+
+# 3. discard() vs remove() on a missing element
+s.discard(99)        # no error, nothing happens
+print("discard worked, no error")
+try:
+    s.remove(99)     # raises KeyError
+except KeyError:
+    print("remove raised a KeyError")
+
+
+# =====================================================
+# UNIT 3 - INTERMEDIATE
+# =====================================================
+
+
+# 1. Remove duplicates, keep order
+data = [4, 5, 2, 4, 8, 5, 2, 1, 9, 4]
+seen = set()
+result = []
+for item in data:
+    if item not in seen:
+        seen.add(item)
+        result.append(item)
+print(result)        # [4, 5, 2, 8, 1, 9]
+
+# 2. Unique words (lowercase)
+sentence = "To be or not to be that is the question"
+words = {w.lower() for w in sentence.split()}
+print(words)
+print("Unique words:", len(words))   # 8
+
+# 3. Missing numbers
+expected = set(range(1, 11))
+actual = {1, 2, 4, 5, 7, 8, 10}
+missing = expected - actual
+print(missing)       # {3, 6, 9}
+
+
+# =====================================================
+# UNIT 3 - ADVANCED
+# =====================================================
+
+
+# 1. find_duplicates
+def find_duplicates(lst):
+    seen = set()
+    dupes = set()
+    for item in lst:
+        if item in seen:
+            dupes.add(item)
+        else:
+            seen.add(item)
+    return dupes
+
+print(find_duplicates([1, 2, 2, 3, 3, 3, 4]))   # {2, 3}
+
+# 2. Team skills
+alice = {"Python", "SQL", "Excel", "Tableau"}
+bob = {"Python", "Java", "SQL", "AWS"}
+carol = {"Python", "R", "SQL", "Tableau"}
+
+print("All three:", alice & bob & carol)         # {'Python', 'SQL'}
+print("Only Alice:", alice - bob - carol)        # {'Excel'}
+print("All skills:", alice | bob | carol)
+
+# 3. common_chars
+def common_chars(s1, s2):
+    return set(s1) & set(s2)
+
+print(common_chars("hello", "world"))            # {'l', 'o'}
