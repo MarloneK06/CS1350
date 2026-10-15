@@ -1,0 +1,35 @@
+class Door:
+    def __init__(self, name):
+        self.name = name
+        self.cards = set()
+
+    def grant(self, card_id):
+        self.cards.add(card_id)
+
+    def revoke(self, card_id):
+        self.cards.discard(card_id)      # discard = no error if absent
+
+    def can_open(self, card_id):
+        return card_id in self.cards
+
+
+def master_cards(doors):
+    return set.intersection(*[d.cards for d in doors])
+
+
+def single_door_cards(doors):
+    seen_once, seen_more = set(), set()
+    for d in doors:
+        seen_more |= seen_once & d.cards
+        seen_once ^= d.cards - seen_more
+    return seen_once
+
+
+def unused_cards(all_cards, doors):
+    return all_cards - set.union(*[d.cards for d in doors])
+
+
+def audit(doors):
+    for d in doors:
+        print(f"{d.name}: {len(d.cards)} cards")
+    print("Master cards:", master_cards(doors))
