@@ -1,0 +1,21 @@
+import json
+
+def process_readings(in_file, json_file, alert_file, limit):
+    values = {}
+    alerts = 0
+    with open(in_file) as f, open(alert_file, "w") as out:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            time, sensor, value = line.split(",")
+            values.setdefault(sensor, []).append(float(value))
+            if float(value) > limit:
+                out.write(f"{time} {sensor} {value}\n")   # value as written in input
+                alerts += 1
+
+    summary = {s: {"count": len(v), "average": sum(v) / len(v), "max": max(v)}
+               for s, v in values.items()}
+    with open(json_file, "w") as f:
+        json.dump(summary, f, indent=2)
+    return alerts
